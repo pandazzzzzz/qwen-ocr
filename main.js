@@ -1,7 +1,7 @@
 async function recognize(base64, lang, options) {
     const { config, utils } = options;
     const { tauriFetch } = utils;
-    let { api_key, base_url, model, custom_prompt, api_format = 'openai' } = config;
+    let { api_key, base_url, model, custom_prompt, api_format = 'openai', enable_thinking = 'false' } = config;
 
     // 验证必需的配置参数
     if (!api_key || api_key.length === 0) {
@@ -99,6 +99,15 @@ async function recognize(base64, lang, options) {
                 }
             ]
         };
+        
+        // 添加思考模式支持（仅对支持的模型）
+        if (enable_thinking === 'true' || enable_thinking === true) {
+            // 检查是否为支持思考模式的模型
+            const thinkingModels = ['qwen3-vl-plus', 'qwen3-vl-flash', 'qwen3-vl-2350-a22b-thinking'];
+            if (thinkingModels.some(m => model.includes(m))) {
+                requestData.enable_thinking = true;
+            }
+        }
     } else {
         // DashScope 原生格式
         requestData = {
@@ -122,6 +131,15 @@ async function recognize(base64, lang, options) {
                 result_format: "message"
             }
         };
+        
+        // 添加思考模式支持（仅对支持的模型）
+        if (enable_thinking === 'true' || enable_thinking === true) {
+            // 检查是否为支持思考模式的模型
+            const thinkingModels = ['qwen3-vl-plus', 'qwen3-vl-flash', 'qwen3-vl-2350-a22b-thinking'];
+            if (thinkingModels.some(m => model.includes(m))) {
+                requestData.parameters.enable_thinking = true;
+            }
+        }
     }
 
     try {
@@ -144,13 +162,31 @@ async function recognize(base64, lang, options) {
             if (api_format === 'openai') {
                 // OpenAI 兼容格式响应
                 if (result.choices && result.choices.length > 0) {
-                    const content = result.choices[0].message.content;
+                    const choice = result.choices[0];
+                    let content = choice.message.content;
+                    
+                    // 处理思考模式的响应
+                    if (choice.message.thinking) {
+                        // 如果有思考过程，可以选择是否包含在结果中
+                        // 这里我们只返回最终答案，不包含思考过程
+                        content = choice.message.content;
+                    }
+                    
                     return typeof content === 'string' ? content.trim() : String(content).trim();
                 }
             } else {
                 // DashScope 原生格式响应
                 if (result.output && result.output.choices && result.output.choices.length > 0) {
-                    const content = result.output.choices[0].message.content;
+                    const choice = result.output.choices[0];
+                    let content = choice.message.content;
+                    
+                    // 处理思考模式的响应
+                    if (choice.message.thinking) {
+                        // 如果有思考过程，可以选择是否包含在结果中
+                        // 这里我们只返回最终答案，不包含思考过程
+                        content = choice.message.content;
+                    }
+                    
                     if (typeof content === 'string') {
                         return content.trim();
                     } else if (Array.isArray(content)) {
