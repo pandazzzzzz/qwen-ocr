@@ -35,13 +35,13 @@ async function recognize(base64, lang, options) {
         apiEndpoint = base_url;
     }
     
-    // 模型名称映射和默认值
+    // 模型名称映射（向后兼容旧版本模型名）
     const modelMapping = {
         'qwen-vl-ocr': 'qwen3-vl-plus',
-        'qwen-vl-plus': 'qwen3-vl-plus',
         'qwen-vl-max': 'qwen2.5-vl-72b-instruct'
     };
     
+    // 应用模型映射和默认值
     model = modelMapping[model] || model || 'qwen3-vl-plus';
 
     // 构造提示词
