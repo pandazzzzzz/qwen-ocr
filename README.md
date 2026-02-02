@@ -26,18 +26,22 @@
 | 参数 | 说明 | 默认值 |
 |------|------|--------|
 | **API Key** | 阿里云 DashScope API 密钥 | 必填 |
-| **Model** | 选择模型（推荐 qwen3-vl-plus） | qwen3-vl-plus |
+| **Model** | 模型名称（默认 qwen3-vl-plus） | qwen3-vl-plus |
 | **API 格式** | openai（推荐）或 dashscope | openai |
 | **Base URL** | 自定义 API 地址 | 自动选择 |
 | **自定义提示词** | 自定义识别提示，支持 `$lang` 占位符 | 可选 |
 
 ## 支持的模型
 
-- `qwen3-vl-plus`: 最新版本（推荐）
+可以手动输入任何支持的模型名称，推荐使用：
+
+- `qwen3-vl-plus`: 最新版本（默认推荐）
 - `qwen2.5-vl-7b-instruct`: 高性能版本
 - `qwen2.5-vl-72b-instruct`: 最强性能版本
 - `qwen-vl-plus`: 兼容版本
 - `qwen-vl-max`: 兼容版本
+
+也可以输入其他阿里云支持的 Qwen 视觉模型名称。
 
 ## 支持的语言
 
