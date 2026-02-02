@@ -1,0 +1,62 @@
+name: Build Qwen OCR Plugin
+on: 
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  release:
+    types: [ created ]
+
+permissions: write-all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq zip
+        
+      - name: Get plugin info
+        id: getinfo
+        run: |
+          echo "PLUGIN_ID=$(cat info.json | jq -r '.id')" >> "$GITHUB_ENV"
+          echo "PLUGIN_NAME=$(cat info.json | jq -r '.display')" >> "$GITHUB_ENV"
+          echo "ICON_FILE=$(cat info.json | jq -r '.icon')" >> "$GITHUB_ENV"
+          
+      - name: Validate required files
+        run: |
+          if [ ! -f "info.json" ]; then echo "info.json not found"; exit 1; fi
+          if [ ! -f "main.js" ]; then echo "main.js not found"; exit 1; fi
+          if [ ! -f "${{ env.ICON_FILE }}" ]; then echo "Icon file ${{ env.ICON_FILE }} not found"; exit 1; fi
+          
+      - name: Create plugin package
+        run: |
+          zip -r "${{ env.PLUGIN_ID }}.potext" info.json main.js "${{ env.ICON_FILE }}"
+          ls -la *.potext
+          
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PLUGIN_ID }}.potext
+          path: "*.potext"
+          if-no-files-found: error
+          
+      - name: Upload to release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.potext"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Create release on tag
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.potext"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generate_release_notes: true

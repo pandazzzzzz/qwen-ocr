@@ -1,0 +1,78 @@
+{
+  "id": "plugin.com.pot-app.qwen-ocr",
+  "plugin_type": "recognize",
+  "icon": "icon.png",
+  "display": "Qwen OCR",
+  "homepage": "https://github.com/your-username/API-Test",
+  "needs": [
+    {
+      "key": "api_key",
+      "display": "API Key",
+      "type": "input"
+    },
+    {
+      "key": "base_url",
+      "display": "Base URL",
+      "type": "input"
+    },
+    {
+      "key": "model",
+      "display": "Model",
+      "type": "select",
+      "options": {
+        "qwen3-vl-plus": "Qwen3-VL-Plus (推荐)",
+        "qwen2.5-vl-7b-instruct": "Qwen2.5-VL-7B",
+        "qwen2.5-vl-72b-instruct": "Qwen2.5-VL-72B",
+        "qwen-vl-plus": "Qwen-VL-Plus (兼容)",
+        "qwen-vl-max": "Qwen-VL-Max (兼容)"
+      }
+    },
+    {
+      "key": "api_format",
+      "display": "API 格式",
+      "type": "select",
+      "options": {
+        "openai": "OpenAI 兼容 (推荐)",
+        "dashscope": "DashScope 原生"
+      }
+    },
+    {
+      "key": "custom_prompt",
+      "display": "自定义提示词",
+      "type": "input"
+    }
+  ],
+  "language": {
+    "auto": "auto",
+    "zh_cn": "zh",
+    "zh_tw": "zh-tw",
+    "yue": "yue",
+    "en": "en",
+    "ja": "ja",
+    "ko": "ko",
+    "fr": "fr",
+    "es": "es",
+    "ru": "ru",
+    "de": "de",
+    "it": "it",
+    "tr": "tr",
+    "pt_pt": "pt",
+    "pt_br": "pt-br",
+    "vi": "vi",
+    "id": "id",
+    "th": "th",
+    "ms": "ms",
+    "ar": "ar",
+    "hi": "hi",
+    "mn_mo": "mn",
+    "mn_cy": "mn-cy",
+    "km": "km",
+    "nb_no": "no",
+    "nn_no": "no",
+    "fa": "fa",
+    "sv": "sv",
+    "pl": "pl",
+    "nl": "nl",
+    "uk": "uk"
+  }
+}
