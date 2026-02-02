@@ -13,19 +13,14 @@
     {
       "key": "base_url",
       "display": "Base URL",
-      "type": "input"
+      "type": "input",
+      "default": "https://dashscope.aliyuncs.com/compatible-mode/v1"
     },
     {
       "key": "model",
       "display": "Model",
-      "type": "select",
-      "options": {
-        "qwen3-vl-plus": "Qwen3-VL-Plus (推荐)",
-        "qwen2.5-vl-7b-instruct": "Qwen2.5-VL-7B",
-        "qwen2.5-vl-72b-instruct": "Qwen2.5-VL-72B",
-        "qwen-vl-plus": "Qwen-VL-Plus (兼容)",
-        "qwen-vl-max": "Qwen-VL-Max (兼容)"
-      }
+      "type": "input",
+      "default": "qwen3-vl-plus"
     },
     {
       "key": "api_format",
@@ -40,6 +35,15 @@
       "key": "custom_prompt",
       "display": "自定义提示词",
       "type": "input"
+    },
+    {
+      "key": "enable_thinking",
+      "display": "思考模式",
+      "type": "select",
+      "options": {
+        "false": "关闭 (默认)",
+        "true": "开启"
+      }
     }
   ],
   "language": {
