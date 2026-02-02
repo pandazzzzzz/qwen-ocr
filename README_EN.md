@@ -1,5 +1,8 @@
 # Qwen OCR Plugin
 
+[![English](https://img.shields.io/badge/README-English-blue.svg)](README_EN.md)
+[![中文](https://img.shields.io/badge/README-中文-red.svg)](README.md)
+
 A Pot-App text recognition plugin based on Alibaba Cloud Qwen Vision Models.
 
 ## Features

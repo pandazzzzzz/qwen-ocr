@@ -1,5 +1,8 @@
 # Qwen OCR 插件
 
+[![English](https://img.shields.io/badge/README-English-blue.svg)](README_EN.md)
+[![中文](https://img.shields.io/badge/README-中文-red.svg)](README.md)
+
 基于阿里云通义千问视觉模型的 Pot-App 文字识别插件。
 
 ## 功能特点
