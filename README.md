@@ -28,8 +28,18 @@
 | **API Key** | 阿里云 DashScope API 密钥 | 必填 |
 | **Model** | 模型名称（默认 qwen3-vl-plus） | qwen3-vl-plus |
 | **API 格式** | openai（推荐）或 dashscope | openai |
-| **Base URL** | 自定义 API 地址 | 自动选择 |
+| **Base URL** | API 服务地址（默认 OpenAI 兼容格式） | 自动设置 |
 | **自定义提示词** | 自定义识别提示，支持 `$lang` 占位符 | 可选 |
+
+### 4. Base URL 说明
+
+**默认地址**（推荐）：
+- `https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions`
+
+**其他可用地址**：
+- DashScope 原生格式：`https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation`
+- 新加坡区域：`https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions`
+- 弗吉尼亚区域：`https://dashscope-us.aliyuncs.com/compatible-mode/v1/chat/completions`
 
 ## 支持的模型
 
