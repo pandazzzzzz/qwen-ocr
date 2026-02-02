@@ -34,12 +34,14 @@
 ### 4. Base URL 说明
 
 **默认地址**（推荐）：
-- `https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions`
+- `https://dashscope.aliyuncs.com/compatible-mode/v1`
 
 **其他可用地址**：
 - DashScope 原生格式：`https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation`
-- 新加坡区域：`https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions`
-- 弗吉尼亚区域：`https://dashscope-us.aliyuncs.com/compatible-mode/v1/chat/completions`
+- 新加坡区域：`https://dashscope-intl.aliyuncs.com/compatible-mode/v1`
+- 弗吉尼亚区域：`https://dashscope-us.aliyuncs.com/compatible-mode/v1`
+
+**注意**：Base URL 不需要包含 `/chat/completions` 路径，插件会自动添加。
 
 ## 支持的模型
 

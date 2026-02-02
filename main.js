@@ -11,7 +11,7 @@ async function recognize(base64, lang, options) {
     // 根据API格式设置默认URL
     if (!base_url || base_url.length === 0) {
         base_url = api_format === 'openai' 
-            ? "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
+            ? "https://dashscope.aliyuncs.com/compatible-mode/v1"
             : "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation";
     }
     
@@ -21,6 +21,18 @@ async function recognize(base64, lang, options) {
     }
     if (base_url.endsWith('/')) {
         base_url = base_url.slice(0, -1);
+    }
+    
+    // 构造完整的 API endpoint
+    let apiEndpoint;
+    if (api_format === 'openai') {
+        // OpenAI 兼容格式需要添加 /chat/completions
+        apiEndpoint = base_url.endsWith('/chat/completions') 
+            ? base_url 
+            : `${base_url}/chat/completions`;
+    } else {
+        // DashScope 原生格式直接使用 base_url
+        apiEndpoint = base_url;
     }
     
     // 模型名称映射和默认值
@@ -113,7 +125,7 @@ async function recognize(base64, lang, options) {
     }
 
     try {
-        const response = await tauriFetch(base_url, {
+        const response = await tauriFetch(apiEndpoint, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${api_key}`,
