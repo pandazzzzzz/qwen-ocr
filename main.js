@@ -42,7 +42,7 @@ async function recognize(base64, lang, options) {
     };
     
     // 应用模型映射和默认值
-    model = modelMapping[model] || model || 'qwen3-vl-plus';
+    model = modelMapping[model] || model || 'qwen3-vl-flash';
 
     // 构造提示词
     let prompt = custom_prompt || "请识别图片中的文字内容，直接返回识别到的文字，不要添加任何解释或格式化。";

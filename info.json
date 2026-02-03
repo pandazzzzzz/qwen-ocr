@@ -3,24 +3,26 @@
   "plugin_type": "recognize",
   "icon": "icon.png",
   "display": "Qwen OCR",
-  "homepage": "https://github.com/your-username/API-Test",
+  "homepage": "https://github.com/pandazzzzzz/qwen-ocr",
   "needs": [
     {
       "key": "api_key",
-      "display": "API Key",
+      "display": "API Key (必填)",
       "type": "input"
     },
     {
       "key": "base_url",
       "display": "Base URL",
       "type": "input",
-      "default": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+      "default": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "placeholder": "https://dashscope.aliyuncs.com/compatible-mode/v1"
     },
     {
       "key": "model",
       "display": "Model",
       "type": "input",
-      "default": "qwen3-vl-plus"
+      "default": "qwen3-vl-flash",
+      "placeholder": "qwen3-vl-flash"
     },
     {
       "key": "api_format",
